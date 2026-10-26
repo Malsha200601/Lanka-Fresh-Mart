@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lanka Fresh Mart sales dashboard">
+    <title>Lanka Fresh Mart</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+
+    <aside class="sidebar" aria-label="Desktop navigation">
+        <a class="sidebar-brand" href="#dashboard">
+            <span class="brand-mark"><i class="fa-solid fa-seedling"></i></span>
+            <span>Lanka<span class="accent">Fresh</span>
+                <small>Sales Dashboard</small>
+            </span>
+        </a>
+
+        <nav class="side-links" aria-label="Sidebar navigation">
+            <a href="#dashboard" class="side-link active">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+            <a href="#sales" class="side-link">
+                <i class="fa-solid fa-chart-simple"></i> Sales
+            </a>
+            <a href="#reports" class="side-link">
+                <i class="fa-regular fa-file-lines"></i> Reports
+            </a>
+            <a href="#settings" class="side-link">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+        </nav>
+    </aside>
+
+    <div class="main-shell">
+        <header class="topbar">
+            <div class="top-actions">
+                <span class="online-indicator">
+                    <i class="fa-solid fa-square"></i> Live overview
+                </span>
+                <button class="icon-action" id="themeToggle" type="button"
+                    aria-label="Toggle dark mode">
+                    <i class="fa-regular fa-lightbulb"></i>
+                </button>
+            </div>
+
+            <a class="brand" href="#dashboard" aria-label="Lanka Fresh Mart home">
+                <span class="brand-mark">
+                    <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+                </span>
+                <span class="brand-name">
+                    lanka<span>fresh</span>
+                    <small>Sales Dashboard</small>
+
+                </span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="Open navigation menu"
+                aria-controls="primaryNav" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+                <a class="nav-link active" href="#dashboard" aria-current="page">Dashboard</a>
+                <a class="nav-link" href="#sales">Sales</a>
+                <a class="nav-link" href="#reports">Reports</a>
+                <a class="nav-link" href="#settings">Settings</a>
+            </nav>
+
+            <div class="profile">
+                <div class="profile-copy">
+                    <strong>Malsha Ranaweera</strong>
+                </div>
+                <div class="avatar" aria-label="Branch Manager profile">MR</div>
+            </div>
+        </header>
+
+        <main class="dashboard" id="dashboard">
+            <section class="welcome-row" aria-labelledby="pageTitle">
+                <div>   
+                    <h1 id="pageTitle">Sales Overview</h1>
+                </div>
+
+                <div class="period-chip">
+                    <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                    <span>Jan - Jun 2026</span>
+                </div>
+            </section>
+
+            <div class="hero-ambient" aria-hidden="true">
+                <i class="fa-solid fa-chart-pie"></i>
+                <i class="fa-solid fa-coins"></i>
+            </div>
+
+            <section class="kpi-grid" aria-label="Key performance indicators">
+                <article class="kpi-card revenue-card">
+                    <div class="kpi-top">
+                        <span class="kpi-icon"><i class="fa-solid fa-chart-line"></i></span>
+                        <span class="kpi-label">TOTAL REVENUE</span>
+                    </div>
+                    <p class="kpi-value" id="totalRevenue">—</p>
+                    
+                </article>
+
+                <article class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-icon mint"><i class="fa-solid fa-receipt"></i></span>
+                        <span class="kpi-label">TOTAL UNITS SOLD</span>
+                    </div>
+                    <p class="kpi-value" id="totalUnits">—</p>
+                    
+                </article>
+
+                <article class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-icon gold"><i class="fa-solid fa-calendar-check"></i></span>
+                        <span class="kpi-label">BEST MONTH</span>
+                    </div>
+                    <p class="kpi-value" id="bestMonth">—</p>
+                    
+                </article>
+
+                <article class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-icon lavender"><i class="fa-solid fa-building"></i></span>
+                        <span class="kpi-label">BEST BRANCH</span>
+                    </div>
+                    <p class="kpi-value" id="bestBranch">—</p>
+                    
+                </article>
+            </section>
+
+            <section class="charts-grid" aria-label="Sales visualizations">
+                <article class="chart-card" id="sales">
+                    <div class="chart-heading">
+                            <h2>SIX Month Overview</h2>
+                    </div>
+                    <div class="chart-wrap line-wrap">
+                        <canvas id="monthlyChart"
+                            role="img"
+                            aria-label="Monthly revenue line chart"></canvas>
+                    </div>
+                </article>
+
+                <article class="chart-card" id="reports">
+                    <div class="chart-heading">        
+                               <h2>Branch Revenue (Q2)</h2>
+                    </div>
+
+                    <div class="chart-wrap bar-wrap">
+                        <canvas id="branchChart"
+                            role="img"
+                            aria-label="Q2 branch revenue bar chart"></canvas>
+                    </div>
+
+                </article>
+            </section>
+
+        </main>
+    </div>
+</div>
+</body>
+</html>
